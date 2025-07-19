@@ -1,150 +1,73 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, ActivityIndicator, SafeAreaView, KeyboardAvoidingView, Platform } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { useTranslation } from './hooks/useTranslation';
-import { LanguagePicker } from './components/LanguagePicker';
-import { TranslationInput } from './components/TranslationInput';
-import { TranslationResult } from './components/TranslationResult';
-import { RecentTranslations } from './components/RecentTranslations';
 
 export default function App() {
-  const {
-    inputText,
-    setInputText,
-    translatedText,
-    selectedLanguage,
-    setSelectedLanguage,
-    isLoading,
-    recentTranslations,
-    translateText,
-    clearText,
-    copyToClipboard,
-  } = useTranslation();
-
-  const [showLanguagePicker, setShowLanguagePicker] = useState(false);
+  const [count, setCount] = React.useState(0);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar style="auto" />
-      <KeyboardAvoidingView 
-        style={styles.keyboardAvoidingView}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      
+      <Text style={styles.title}>Hello World!</Text>
+      <Text style={styles.subtitle}>Welcome to React Native</Text>
+      
+      <TouchableOpacity 
+        style={styles.button}
+        onPress={() => setCount(count + 1)}
       >
-        <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
-          {/* Header */}
-          <View style={styles.header}>
-            <Text style={styles.title}>Translation App</Text>
-            <Text style={styles.subtitle}>Translate text to any language</Text>
-          </View>
-
-          {/* Language Picker */}
-          <LanguagePicker
-            selectedLanguage={selectedLanguage}
-            onLanguageSelect={setSelectedLanguage}
-            showLanguagePicker={showLanguagePicker}
-            onTogglePicker={() => setShowLanguagePicker(!showLanguagePicker)}
-          />
-
-          {/* Input Section */}
-          <TranslationInput
-            inputText={inputText}
-            onInputChange={setInputText}
-          />
-
-          {/* Action Buttons */}
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={[styles.button, styles.translateButton]}
-              onPress={translateText}
-              disabled={isLoading || !inputText.trim()}
-            >
-              {isLoading ? (
-                <ActivityIndicator color="#fff" />
-              ) : (
-                <Text style={styles.buttonText}>Translate</Text>
-              )}
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={[styles.button, styles.clearButton]}
-              onPress={clearText}
-            >
-              <Text style={styles.clearButtonText}>Clear</Text>
-            </TouchableOpacity>
-          </View>
-
-          {/* Translation Result */}
-          <TranslationResult
-            translatedText={translatedText}
-            onCopy={copyToClipboard}
-          />
-
-          {/* Recent Translations */}
-          <RecentTranslations
-            recentTranslations={recentTranslations}
-          />
-        </ScrollView>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+        <Text style={styles.buttonText}>Tap me!</Text>
+      </TouchableOpacity>
+      
+      <Text style={styles.counter}>You tapped {count} times</Text>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
-  },
-  keyboardAvoidingView: {
-    flex: 1,
-  },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    padding: 20
-  },
-  header: {
-    alignItems: 'center',
-    marginBottom: 30,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 5,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    marginBottom: 20,
-  },
-  button: {
-    flex: 1,
-    padding: 15,
-    borderRadius: 10,
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 5,
+    padding: 20,
   },
-  translateButton: {
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 18,
+    color: '#666',
+    marginBottom: 40,
+    textAlign: 'center',
+  },
+  button: {
     backgroundColor: '#007AFF',
-  },
-  clearButton: {
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#ddd',
+    paddingHorizontal: 30,
+    paddingVertical: 15,
+    borderRadius: 25,
+    marginBottom: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   buttonText: {
-    color: '#fff',
-    fontSize: 16,
+    color: 'white',
+    fontSize: 18,
     fontWeight: '600',
   },
-  clearButtonText: {
-    color: '#666',
+  counter: {
     fontSize: 16,
-    fontWeight: '600',
+    color: '#333',
+    textAlign: 'center',
   },
 });
