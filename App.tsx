@@ -37,18 +37,18 @@ export default function App() {
             <Text style={styles.subtitle}>Translate text to any language</Text>
           </View>
 
+          {/* Input Section - Moved above Language Picker */}
+          <TranslationInput
+            inputText={inputText}
+            onInputChange={setInputText}
+          />
+
           {/* Language Picker */}
           <LanguagePicker
             selectedLanguage={selectedLanguage}
             onLanguageSelect={setSelectedLanguage}
             showLanguagePicker={showLanguagePicker}
             onTogglePicker={() => setShowLanguagePicker(!showLanguagePicker)}
-          />
-
-          {/* Input Section */}
-          <TranslationInput
-            inputText={inputText}
-            onInputChange={setInputText}
           />
 
           {/* Action Buttons */}
@@ -77,6 +77,7 @@ export default function App() {
           <TranslationResult
             translatedText={translatedText}
             onCopy={copyToClipboard}
+            languageCode={selectedLanguage.code}
           />
 
           {/* Recent Translations */}

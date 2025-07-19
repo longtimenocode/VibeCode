@@ -1,16 +1,18 @@
 # Translation App
 
-A modern, mobile-first translation application built with React Native and Expo. Translate text between multiple languages with a clean, intuitive interface.
+A modern, mobile-first translation application built with React Native and Expo. Translate text between multiple languages with a clean, intuitive interface and text-to-speech functionality.
 
 ## 🚀 Features
 
 - **Multi-language Support**: Translate between 20+ languages
 - **Real-time Translation**: Instant translation using Google Translate API
+- **Text-to-Speech**: Listen to translated text in the target language
 - **Fallback Services**: Multiple translation services for reliability
 - **Recent Translations**: Save and view your translation history
 - **Clean UI**: Modern, responsive design with smooth animations
 - **Offline Storage**: Recent translations persist between sessions
 - **Copy to Clipboard**: Easy sharing of translated text
+- **Intuitive Layout**: Text input positioned above language selector for better UX
 
 ## 📱 Supported Languages
 
@@ -51,6 +53,7 @@ TranslationApp/
 - **TypeScript** - Type-safe JavaScript
 - **Axios** - HTTP client for API calls
 - **AsyncStorage** - Local data persistence
+- **Expo Speech** - Text-to-speech functionality
 - **Google Translate API** - Primary translation service
 - **MyMemory API** - Fallback translation service
 
@@ -92,8 +95,8 @@ TranslationApp/
 
 #### Components
 - **LanguagePicker**: Dropdown for selecting target language
-- **TranslationInput**: Text input area for source text
-- **TranslationResult**: Displays translated text with copy functionality
+- **TranslationInput**: Text input area for source text (positioned above language selector)
+- **TranslationResult**: Displays translated text with speak and copy functionality
 - **RecentTranslations**: Shows translation history
 
 #### Services
@@ -169,8 +172,10 @@ npm test
 
 ### Manual Testing Checklist
 - [ ] Text input accepts multi-line text
+- [ ] Text input is positioned above language selector
 - [ ] Language picker shows all supported languages
 - [ ] Translation works for all language pairs
+- [ ] Speak button plays translated text in target language
 - [ ] Recent translations are saved and displayed
 - [ ] Copy functionality works
 - [ ] Clear button resets input and output
@@ -190,6 +195,7 @@ For production use, consider:
 ## 📈 Performance
 
 - **Translation Speed**: ~1-3 seconds per request
+- **Text-to-Speech**: Instant playback with natural voice
 - **Fallback System**: Automatic service switching on failure
 - **Caching**: Recent translations stored locally
 - **Memory Usage**: Optimized for mobile devices
@@ -218,9 +224,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Google Translate API may have rate limits
 - Some languages may have limited translation quality
 - Network connectivity required for translation
+- Text-to-speech may not work on all devices
 
 ## 🔮 Roadmap
 
+- [x] Text-to-speech functionality
+- [x] Improved UI layout (text input above language selector)
 - [ ] Offline translation support
 - [ ] Voice input and output
 - [ ] Camera text recognition
@@ -236,5 +245,5 @@ For support, email support@translationapp.com or create an issue in this reposit
 ---
 
 **Last Updated**: December 2024  
-**Version**: 1.0.0  
+**Version**: 1.1.0  
 **Author**: Lakshmanan Ramaiah 
